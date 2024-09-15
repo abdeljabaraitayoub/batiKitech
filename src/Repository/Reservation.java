@@ -1,12 +1,10 @@
 package Repository;
 
-import Entitie.Room;
 import Repository.Dao.ReservationDao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Reservation {
     private ReservationDao reservationdao=new ReservationDao();

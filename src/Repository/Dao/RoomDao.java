@@ -1,12 +1,7 @@
 package Repository.Dao;
-import Entitie.Room;
-import Enum.RoomStatus;
-import Enum.type;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class RoomDao extends Dao {
 

@@ -2,8 +2,6 @@ package Repository.Dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import Entitie.Reservation;
 
 public class ReservationDao extends Dao {
 

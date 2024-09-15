@@ -1,11 +1,9 @@
 package Ui;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import Enum.type;
-import Enum.RoomStatus;
+
 public class Room {
     private Service.Room roomService = new Service.Room();
     public Room() throws SQLException {
