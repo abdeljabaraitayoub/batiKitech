@@ -43,13 +43,12 @@ public class Database {
     }
 
 
-    public static int executeUpdate(String query) throws SQLException {
-        try (Statement statement = connection.createStatement()) {
-            return statement.executeUpdate(query);
-        } catch (SQLException e) {
-            System.out.println("Update execution failure.");
-            e.printStackTrace();
-            throw e;
+    public int executeUpdate(String sql, Object... params) throws SQLException {
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            for (int i = 0; i < params.length; i++) {
+                pstmt.setObject(i + 1, params[i]);
+            }
+            return pstmt.executeUpdate();
         }
     }
 

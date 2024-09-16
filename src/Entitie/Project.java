@@ -1,5 +1,10 @@
 package Entitie;
+
 import Enum.ProjectStatus;
+
+import java.util.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Project {
 
@@ -9,17 +14,15 @@ public class Project {
     private double totalCost;
     private ProjectStatus status;
     private Client client;
-    private Quote quote;
 
 
-    public Project(int id,String name,double profitMargin,double totalCost,ProjectStatus status,Client client,Quote quote){
-        this.id=id;
-        this.name=name;
-        this.profitMargin=profitMargin;
-        this.totalCost=totalCost;
-        this.status=status;
-        this.client=client;
-        this.quote=quote;
+    public Project(int id, String name, double profitMargin, double totalCost, ProjectStatus status, Client client) {
+        this.id = id;
+        this.name = name;
+        this.profitMargin = profitMargin;
+        this.totalCost = totalCost;
+        this.status = status;
+        this.client = client;
     }
 
 
@@ -32,62 +35,75 @@ public class Project {
     }
 
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public void setName(String name){
-        this.name=name;
+    public void setName(String name) {
+        this.name = name;
     }
 
 
-
-    public double getProfitMargin(){
+    public double getProfitMargin() {
         return profitMargin;
     }
 
-    public void setProfitMargin(double profitMargin){
-        this.profitMargin=profitMargin;
+    public void setProfitMargin(double profitMargin) {
+        this.profitMargin = profitMargin;
     }
 
 
-    public double getTotalCost(){
+    public double getTotalCost() {
         return totalCost;
     }
 
-    public void setTotalCost(double totalCost){
-        this.totalCost=totalCost;
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
     }
 
 
-    public ProjectStatus getStatus(){
+    public ProjectStatus getStatus() {
         return status;
     }
 
-    public void setStatus(ProjectStatus status){
-        this.status=status;
+    public void setStatus(ProjectStatus status) {
+        this.status = status;
     }
 
 
-    public Client getClient(){
+    public Client getClient() {
         return client;
     }
 
-    public void setClient(Client client){
-        this.client=client;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
+//
+//    public Quote getQuote() {
+//        return quote;
+//    }
+//
+//    public void setQuote(Quote quote) {
+//        this.quote = quote;
+//    }
 
 
-    public Quote getQuote(){
-        return quote;
+    public static Project mapResultSet(ResultSet data) {
+        try {
+            return new Project(
+                    data.getInt("id"),
+                    data.getString("name"),
+                    data.getDouble("profitMargin"),
+                    data.getDouble("totalCost"),
+                    ProjectStatus.valueOf(data.getString("status")),
+                    new Client(data.getInt("client_id"), data.getString("client_name"), data.getString("phone"), data.getString("address"), data.getBoolean("isProfessional"))
+            );
+        } catch (SQLException e) {
+            System.err.println("Error mapping project: " + e.getMessage());
+            return null;
+        }
     }
-
-    public void setQuote(Quote quote){
-        this.quote=quote;
-    }
-
-
 
     public String toString() {
         String border = "=".repeat(50);
@@ -98,7 +114,7 @@ public class Project {
                 "Total Cost: " + totalCost + "€\n" +
                 "Client: " + (client != null ? client.getName() : "Not assigned") + "\n" +
 //                "Components: " + (components != null ? components.size() : 0) + "\n" +
-                "Quote: " + (quote != null ? "Issued on " + quote.getIssueDate() : "Not created") + "\n" +
+//                "Quote: " + (quote != null ? "Issued on " + quote.getIssueDate() : "Not created") + "\n" +
                 border;
     }
 
