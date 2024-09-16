@@ -3,34 +3,63 @@ package Repository.Dao;
 import Database.Database;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Client extends Dao {
 
     public void create(Entitie.Client client) {
+        String sql = "INSERT INTO clients (name, address, phone, isProfessional) VALUES (?, ?, ?, ?)";
+
         try {
-            String sql = String.format("INSERT INTO clients (name, address, phone, isProfessional) VALUES ('%s', '%s', '%s', %s)",
-                    escapeSQL(client.getName()),
-                    escapeSQL(client.getaddress()),
-                    escapeSQL(client.getPhone()),
+            int rowsAffected = database.executeUpdate(sql,
+                    client.getName(),
+                    client.getaddress(),
+                    client.getPhone(),
                     client.getIsProfessional()
             );
-            Database.executeUpdate(sql);
-        } catch (Exception e) {
-            System.out.println(e);
+
+            if (rowsAffected > 0) {
+                System.out.println("Client created successfully.");
+            } else {
+                System.out.println("Failed to create client.");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error creating client: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
     public void update(int id, Entitie.Client client) {
+        String sql = "update clients set name = ?, address = ?, phone = ?, isProfessional = ? where id = ?";
         try {
-            Database.executeUpdate("update clients set name = '" + client.getName() + "', phone = '" + client.getPhone() + "', address = '" + client.getaddress() + "', isProfessional = '" + client.getIsProfessional() + "' where id = " + id);
+            int rowsAffected = database.executeUpdate(
+                    sql,
+                    client.getName(),
+                    client.getaddress(),
+                    client.getPhone(),
+                    client.getIsProfessional(),
+                    id
+
+            );
+            if (rowsAffected > 0) {
+                System.out.println("Client updated successfully.");
+            } else {
+                System.out.println("Failed to update client.");
+            }
         } catch (Exception e) {
             System.out.println(e);
         }
     }
 
     public void delete(int id) {
+        String sql = "delete from clients where id = ?";
         try {
-            Database.executeUpdate("delete from clients where id = " + id);
+            int rowsAffected = database.executeUpdate(sql, id);
+            if (rowsAffected > 0) {
+                System.out.println("Client deleted successfully.");
+            } else {
+                System.out.println("Failed to delete client.");
+            }
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -59,3 +88,4 @@ public class Client extends Dao {
     }
 
 }
+
