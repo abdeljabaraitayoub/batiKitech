@@ -1,17 +1,20 @@
 package Entitie;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Client {
-    private int id;
+    private int id = 0;
     private String name;
-    private String email;
     private String phone;
+    private String address;
     private boolean isProfessional;
 
-    public Client(int id, String name, String email, String phone, boolean isProfessional) {
+    public Client(int id, String name, String phone, String address, boolean isProfessional) {
         this.id = id;
         this.name = name;
-        this.email = email;
         this.phone = phone;
+        this.address = address;
         this.isProfessional = isProfessional;
     }
 
@@ -34,21 +37,21 @@ public class Client {
     }
 
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-
     public String getPhone() {
         return phone;
     }
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+
+    public String getaddress() {
+        return address;
+    }
+
+    public void setaddress(String address) {
+        this.address = address;
     }
 
 
@@ -61,19 +64,31 @@ public class Client {
     }
 
 
+    public static Client mapResultSet(ResultSet data) {
+        try {
+            int id = data.getInt("id");
+            String name = data.getString("name");
+            String phone = data.getString("phone");
+            String address = data.getString("address");
+            boolean isProfessional = data.getBoolean("isProfessional");
+            return new Client(id, name, phone, address, isProfessional);
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+
 
     public String toString() {
         String border = "=".repeat(50);
         return border + "\n" +
                 "Client ID: " + id + "\n" +
                 "Name: " + name + "\n" +
-                "Email: " + email + "\n" +
+                "address: " + address + "\n" +
                 "Phone: " + phone + "\n" +
                 "Type: " + (isProfessional ? "Professional" : "Individual") + "\n" +
-                border;
+                border + "\n";
     }
-
-
 
 
 }
