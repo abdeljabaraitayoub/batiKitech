@@ -1,22 +1,23 @@
-package Repository.Dao;
+package Database;
 
 import java.sql.*;
 
 public class Database {
 
     private static Database instance = null;
-    private static String user = "admin";
-    private static String ip= "localhost";
-    private static String port= "5432";
-    private static String password = "admin";
-    private static String database= "hotels";;
+    private static final String user = "admin";
+    private static final String ip = "localhost";
+    private static final String port = "5432";
+    private static final String password = "admin";
+    private static final String database = "batikitchen";
     public static Connection connection;
 
 
-    private Database(){}
+    private Database() {
+    }
 
-    public static Database getInstance(){
-        if(instance == null){
+    public static Database getInstance() {
+        if (instance == null) {
             instance = new Database();
             try {
                 connection = DriverManager.getConnection("jdbc:postgresql://" + ip + ":" + port + "/" + database, user, password);
