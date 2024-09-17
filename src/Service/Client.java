@@ -11,8 +11,10 @@ public class Client {
 //        client.filteronlyProfessional();
 //        client.create();
 //        client.update();
-        client.delete();
+//        client.delete();
+        client.searchByName("a");
     }
+
 
     public void list() {
         repository.list().forEach(System.out::println);
@@ -59,4 +61,7 @@ public class Client {
         repository.delete(id);
     }
 
+    public void searchByName(String name) {
+        repository.list().stream().filter(client -> client.getName().contains(name)).forEach(client -> System.out.println(client));
+    }
 }
