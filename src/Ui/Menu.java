@@ -1,4 +1,5 @@
 package Ui;
+
 import java.util.Scanner;
 
 public class Menu extends Main {
@@ -15,6 +16,7 @@ public class Menu extends Main {
         int option = scanner.nextInt();
         switch (option) {
             case 1:
+                new Project();
                 break;
             case 2:
 //                new Room();

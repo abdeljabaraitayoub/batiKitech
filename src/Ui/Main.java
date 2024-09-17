@@ -1,12 +1,13 @@
 package Ui;
+
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 
-public class Main {
+public abstract class Main {
 
 
-    public static void  clear() {
+    public static void clear() {
         try {
             Robot robot = new Robot();
             robot.keyPress(KeyEvent.VK_CONTROL);
@@ -30,5 +31,10 @@ public class Main {
             e.printStackTrace();
         }
     }
+
+
+    public abstract void display();
+
+    public abstract void choice();
 
 }
