@@ -1,13 +1,14 @@
-CREATE TYPE projectStatus AS ENUM ('IN_PROGRESS','COMPLETED','CANCELED');
+CREATE TYPE projectStatus AS ENUM ('IN_PROGRESS','COMPLETED','CANCELLED');
 CREATE TYPE componentType AS ENUM ('Material','Labor');
 
 CREATE TABLE clients
 (
     id             SERIAL PRIMARY KEY,
     name           VARCHAR(40) NOT NULL,
-    adress         text        NULL,
+    address        text        NULL,
     phone          varchar(20) NOT NULL,
-    isProfessional boolean     NOT NULL
+    isProfessional boolean     NOT NULL,
+    isDeleted      boolean default false
 );
 
 
@@ -19,7 +20,8 @@ CREATE Table projects
     profitMargin float,
     totalCost    float,
     status       projectStatus,
-    client_id    int REFERENCES clients (id)
+    client_id    int REFERENCES clients (id),
+    isDeleted    boolean default false
 );
 
 CREATE TABLE quotes
@@ -28,16 +30,19 @@ CREATE TABLE quotes
     issueDate    DATE    default now(),
     validityDate Date NULL,
     isAccepted   Boolean default false,
-    project_id   int REFERENCES projects (id)
+    project_id   int REFERENCES projects (id),
+    isDeleted    boolean default false
 );
 
 CREATE TABLE components
 (
-    id       SERIAL PRIMARY KEY,
-    name     varchar(30)   not null,
-    unitCost float         not null,
-    quantity int           not null,
-    type     componentType not null
+    id         SERIAL PRIMARY KEY,
+    name       varchar(30)   not null,
+    unitCost   float         not null,
+    quantity   int           not null,
+    type       componentType not null,
+    project_id int REFERENCES projects (id),
+    isDeleted  boolean default false
 );
 
 CREATE TABLE materials
@@ -87,7 +92,7 @@ VALUES ('Granite Countertop', 300.00, 2, 'Material', 1, 150.00, 1.2),
        ('Bathroom Vanity', 400.00, 1, 'Material', 4, 50.00, 1.3);
 
 -- Insert fake labor
-INSERT INTO labor (name, unitCost, quantity, type, project_id, hourlyRate, hoursWorked, workerProductivity)
+INSERT INTO labors (name, unitCost, quantity, type, project_id, hourlyRate, hoursWorked, workerProductivity)
 VALUES ('Kitchen Installation', 25.00, 40, 'Labor', 1, 25.00, 40.00, 1.0),
        ('Office Painting', 20.00, 60, 'Labor', 2, 20.00, 60.00, 1.1),
        ('Electrical Work', 30.00, 80, 'Labor', 3, 30.00, 80.00, 1.2),
