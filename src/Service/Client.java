@@ -9,7 +9,7 @@ public class Client {
         Client client = new Client();
 //        client.list();
 //        client.filteronlyProfessional();
-//        client.create();
+        client.create();
 //        client.update();
 //        client.delete();
         client.searchByName("a");
@@ -33,9 +33,9 @@ public class Client {
         System.out.println("Enter client address: ");
         String address = scanner.nextLine();
         System.out.println("Is the client a professional? (y/n): ");
-        boolean isProfessional = scanner.nextLine().equalsIgnoreCase("y");
+        boolean isProfessional = scanner.next().equalsIgnoreCase("y");
         Entitie.Client client = new Entitie.Client(0, name, phone, address, isProfessional);
-        repository.create(client);
+        Repository.Client.create(client);
     }
 
     public void update() {
@@ -62,6 +62,8 @@ public class Client {
     }
 
     public void searchByName(String name) {
-        repository.list().stream().filter(client -> client.getName().contains(name)).forEach(client -> System.out.println(client));
+        Repository.Client.searchByName(name).forEach(System.out::println);
     }
+
+
 }

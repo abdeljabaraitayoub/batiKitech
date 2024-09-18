@@ -23,6 +23,9 @@ public class Project extends Main {
         int option = scanner.nextInt();
         switch (option) {
             case 1:
+                clear();
+                new Service.Project().create();
+                pause();
                 break;
             case 2:
                 break;

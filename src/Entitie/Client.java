@@ -15,6 +15,7 @@ public class Client {
         this.name = name;
         this.phone = phone;
         this.address = address;
+        this.isProfessional = isProfessional;
 
     }
 

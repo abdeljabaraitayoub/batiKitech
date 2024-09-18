@@ -5,6 +5,7 @@ import Database.Database;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class Project extends Dao {
 
@@ -67,19 +68,19 @@ public class Project extends Dao {
     }
 
 
-    public Entitie.Project get(int id) {
+    public Optional<Entitie.Project> get(int id) {
         String sql = "SELECT clients.name as client_name,* FROM projects join clients on clients.id = projects.client_id WHERE projects.id = '" + id + "'";
         try {
-            var resultSet = Database.executeQuery(sql);
+            ResultSet resultSet = Database.executeQuery(sql);
             if (resultSet.next()) {
-                return Entitie.Project.mapResultSet(resultSet);
+                return Optional.ofNullable(Entitie.Project.mapResultSet(resultSet));
             } else {
                 System.out.println("Project not found.");
-                return null;
+                return Optional.empty();
             }
         } catch (SQLException e) {
             System.err.println("Error getting project: " + e.getMessage());
-            return null;
+            return Optional.empty();
         }
     }
 

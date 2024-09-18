@@ -12,14 +12,14 @@ public class Project {
 
     public static void main(String[] args) {
         Repository.Project project = new Repository.Project();
-        Entitie.Project project1 = new Entitie.Project(1, "Project 1", 0.1, 1000, ProjectStatus.IN_PROGRESS, new Entitie.Client(1, "John Doe", "123456789", "123 Main St", true));
-        project.create(project1);
-        System.out.println(project.get(1));
-        System.out.println(project.get(2));
-        project.update(1, new Entitie.Project(1, "Project 1", 0.1, 1000, ProjectStatus.IN_PROGRESS, new Entitie.Client(1, "John Doe", "123456789", "123 Main St", false)));
-        System.out.println(project.get(1));
-        project.delete(7);
-        System.out.print(project.list());
+//        Entitie.Project project1 = new Entitie.Project(1, "Project 1", 0.1, 1000, ProjectStatus.IN_PROGRESS, new Entitie.Client(1, "John Doe", "123456789", "123 Main St", true));
+//        project.create(project1);
+        System.out.println(project.get(188));
+//        System.out.println(project.get(2));
+//        project.update(1, new Entitie.Project(1, "Project 1", 0.1, 1000, ProjectStatus.IN_PROGRESS, new Entitie.Client(1, "John Doe", "123456789", "123 Main St", false)));
+//        System.out.println(project.get(1));
+//        System.out.print(project.list());
+//        project.delete(7);
     }
 
     public void create(Entitie.Project project) {
@@ -41,7 +41,7 @@ public class Project {
 
     public Entitie.Project get(int id) {
         try {
-            return projectDao.get(id);
+            return projectDao.get(id).orElse(null);
         } catch (Exception e) {
             System.out.println(e);
             return null;
