@@ -1,12 +1,15 @@
 package Entitie;
+
 import Enum.ComponentType;
-public abstract class  Component {
+
+public abstract class Component {
     protected int id;
     protected String name;
     protected double unitCost;
     protected int quantity;
     protected ComponentType type;
     protected Double vatRate;
+    protected Project project;
 
 
     public int getId() {
@@ -18,7 +21,6 @@ public abstract class  Component {
     }
 
 
-
     public String getName() {
         return name;
     }
@@ -26,7 +28,6 @@ public abstract class  Component {
     public void setName(String name) {
         this.name = name;
     }
-
 
 
     public double getUnitCost() {
@@ -38,7 +39,6 @@ public abstract class  Component {
     }
 
 
-
     public int getQuantity() {
         return quantity;
     }
@@ -48,7 +48,6 @@ public abstract class  Component {
     }
 
 
-
     public ComponentType getType() {
         return type;
     }
@@ -56,7 +55,6 @@ public abstract class  Component {
     public void setType(ComponentType type) {
         this.type = type;
     }
-
 
 
     public Double getvatRate() {
