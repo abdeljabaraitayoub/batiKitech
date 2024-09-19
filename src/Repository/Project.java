@@ -13,13 +13,13 @@ public class Project {
 
     public static void main(String[] args) {
         Repository.Project project = new Repository.Project();
-        Entitie.Project project1 = new Entitie.Project(1, "Project 1", 0.1, 1000, ProjectStatus.IN_PROGRESS, new Entitie.Client(1, "John Doe", "123456789", "123 Main St", true));
+//        Entitie.Project project1 = new Entitie.Project(1, "Project 1", 0.1, 1000, ProjectStatus.IN_PROGRESS, new Entitie.Client(1, "John Doe", "123456789", "123 Main St", true));
 //        project.create(project1);
 //        System.out.println(project.get(1));
 //        System.out.println(project.get(2));
 //        project.update(1, new Entitie.Project(1, "Project 1", 0.1, 1000, ProjectStatus.IN_PROGRESS, new Entitie.Client(1, "John Doe", "123456789", "123 Main St", false)));
-        System.out.println(project.get(99).orElse(null));
-//        project.delete(7);
+//        System.out.println(project.get(99).orElse(null));
+        project.delete(12);
 //        System.out.print(project.list());
 
     }
@@ -34,7 +34,7 @@ public class Project {
 
     public void update(int id, Entitie.Project project) {
         try {
-//            projectDao.update(id, project);
+            projectDao.update(id, project);
         } catch (Exception e) {
             System.out.println(e);
         }

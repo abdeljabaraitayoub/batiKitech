@@ -15,7 +15,7 @@ public class Project {
     }
 
     public void list() {
-        repository.list().forEach(System.out::println);
+        repository.list().get().forEach(System.out::println);
     }
 
     public void create() {
