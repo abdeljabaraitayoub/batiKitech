@@ -26,12 +26,13 @@ CREATE Table projects
 
 CREATE TABLE quotes
 (
-    id           SERIAL PRIMARY KEY,
-    issueDate    DATE    default now(),
-    validityDate Date NULL,
-    isAccepted   Boolean default false,
-    project_id   int REFERENCES projects (id),
-    isDeleted    boolean default false
+    id              SERIAL PRIMARY KEY,
+    issueDate       DATE    default now(),
+    EstimatedAmount float,
+    validityDate    Date NULL,
+    isAccepted      Boolean default false,
+    project_id      int REFERENCES projects (id),
+    isDeleted       boolean default false
 );
 
 CREATE TABLE components
@@ -76,12 +77,12 @@ VALUES ('Kitchen Renovation', 0.15, 10000.00, 'IN_PROGRESS', 1),
        ('Home Extension', 0.10, 30000.00, 'CANCELLED', 5);
 
 -- Insert fake quotes
-INSERT INTO quotes (issueDate, validityDate, isAccepted, project_id)
-VALUES ('2023-09-01', '2023-10-01', true, 1),
-       ('2023-08-15', '2023-09-15', true, 2),
-       ('2023-09-10', '2023-10-10', false, 3),
-       ('2023-09-05', '2023-10-05', true, 4),
-       ('2023-08-20', '2023-09-20', false, 5);
+INSERT INTO quotes (issueDate, EstimatedAmount, validityDate, isAccepted, project_id)
+VALUES ('2023-09-01', 90.6, '2023-10-01', true, 1),
+       ('2023-08-15', 90.6, '2023-09-15', true, 2),
+       ('2023-09-10', 90.6, '2023-10-10', false, 3),
+       ('2023-09-05', 90.6, '2023-10-05', true, 4),
+       ('2023-08-20', 90.6, '2023-09-20', false, 5);
 
 -- Insert fake materials
 INSERT INTO materials (name, unitCost, quantity, type, project_id, transportCost, qualityCoefficient)
