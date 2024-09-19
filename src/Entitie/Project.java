@@ -97,8 +97,7 @@ public class Project {
                     data.getDouble("profitMargin"),
                     data.getDouble("totalCost"),
                     ProjectStatus.valueOf(data.getString("status")),
-                    new Client(data.getInt("client_id"), data.getString("client_name"), data.getString("phone"), data.getString("address"), data.getBoolean("isProfessional"))
-            );
+                    new Repository.Client().get(data.getInt("client_id")));
         } catch (SQLException e) {
             System.err.println("Error mapping project: " + e.getMessage());
             return null;
