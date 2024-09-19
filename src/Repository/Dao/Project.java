@@ -68,16 +68,11 @@ public class Project extends Dao {
     }
 
 
-    public Optional<Entitie.Project> get(int id) {
-        String sql = "SELECT clients.name as client_name,* FROM projects join clients on clients.id = projects.client_id WHERE projects.id = '" + id + "'";
+    public Optional<ResultSet> get(int id) {
+        String sql = "SELECT * FROM projects WHERE projects.id = '" + id + "'";
         try {
-            ResultSet resultSet = Database.executeQuery(sql);
-            if (resultSet.next()) {
-                return Optional.ofNullable(Entitie.Project.mapResultSet(resultSet));
-            } else {
-                System.out.println("Project not found.");
-                return Optional.empty();
-            }
+            var resultSet = Database.executeQuery(sql);
+            return Optional.of(resultSet);
         } catch (SQLException e) {
             System.err.println("Error getting project: " + e.getMessage());
             return Optional.empty();
@@ -85,9 +80,9 @@ public class Project extends Dao {
     }
 
     public Optional<ResultSet> list() {
-        String sql = "SELECT clients.name as client_name,* FROM projects join clients on clients.id = projects.client_id";
+        String sql = "SELECT* FROM projects";
         try {
-            return Optional.of(Database.executeQuery(sql));
+            return Optional.ofNullable(Database.executeQuery(sql));
         } catch (SQLException e) {
             System.err.println("Error listing projects: " + e.getMessage());
             return Optional.empty();
