@@ -7,25 +7,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Client {
-    private final Repository.Dao.Client clientDao = new Repository.Dao.Client();
+    private static final Repository.Dao.Client clientDao = new Repository.Dao.Client();
 
     public static void main(String[] args) {
         Repository.Client client = new Repository.Client();
         Entitie.Client client1 = new Entitie.Client(1, "John Doe", "123456789", "123 Main St", true);
         Entitie.Client client2 = new Entitie.Client(2, "Jane Doe", "987654321", "456 Main St", false);
-        client.create(client1);
-        client.create(client2);
-        System.out.println(client.get(1));
-        System.out.println(client.get(2));
+        Client.create(client1);
+        Client.create(client2);
+        System.out.println(Client.get(1));
+        System.out.println(Client.get(2));
         client.update(1, new Entitie.Client(1, "John Doe", "123456789", "123 Main St", false));
-        System.out.println(client.get(1));
+        System.out.println(Client.get(1));
         client.delete(1);
-        System.out.println(client.get(1));
+        System.out.println(Client.get(1));
         System.out.print(client.list());
     }
 
 
-    public void create(Entitie.Client client) {
+    public static void create(Entitie.Client client) {
         clientDao.create(client);
     }
 
@@ -38,7 +38,7 @@ public class Client {
     }
 
 
-    public Entitie.Client get(int id) {
+    public static Entitie.Client get(int id) {
         return Entitie.Client.mapResultSet(clientDao.get(id));
     }
 
@@ -53,4 +53,15 @@ public class Client {
         }
         return clients;
     }
+
+
+    public static List<Entitie.Client> searchByName(String name) {
+        return new Client().list().stream().filter(client -> client.getName().contains(name)).toList();
+    }
+
+    public static List<Entitie.Client> searchByPhone(String phone) {
+        return new Client().list().stream().filter(client -> client.getPhone().equals(phone)).toList();
+    }
+
+
 }

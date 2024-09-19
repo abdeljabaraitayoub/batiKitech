@@ -8,18 +8,19 @@ import java.sql.SQLException;
 public class Client extends Dao {
 
     public void create(Entitie.Client client) {
-        String sql = "INSERT INTO clients (name, address, phone, isProfessional) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO clients (name, address, phone, isProfessional) VALUES (?, ?, ?, ?::boolean)";
 
         try {
             int rowsAffected = database.executeUpdate(sql,
                     client.getName(),
                     client.getaddress(),
                     client.getPhone(),
-                    client.getIsProfessional()
+                    client.getIsProfessional() ? "true" : "false"
             );
 
             if (rowsAffected > 0) {
                 System.out.println("Client created successfully.");
+
             } else {
                 System.out.println("Failed to create client.");
             }
@@ -80,6 +81,16 @@ public class Client extends Dao {
     public ResultSet list() {
         try {
             String sql = "SELECT * FROM clients";
+            return Database.executeQuery(sql);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public ResultSet getByPhone(String phone) {
+        try {
+            String sql = "SELECT * FROM clients WHERE phone = '" + phone + "'";
             return Database.executeQuery(sql);
         } catch (Exception e) {
             System.out.println(e);

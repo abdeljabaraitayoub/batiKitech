@@ -16,6 +16,7 @@ public class Client {
         this.phone = phone;
         this.address = address;
         this.isProfessional = isProfessional;
+
     }
 
 
@@ -71,6 +72,7 @@ public class Client {
             String phone = data.getString("phone");
             String address = data.getString("address");
             boolean isProfessional = data.getBoolean("isProfessional");
+            boolean isDeleted = data.getBoolean("isDeleted");
             return new Client(id, name, phone, address, isProfessional);
         } catch (SQLException e) {
             System.out.println(e);
