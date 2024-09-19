@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public class Project {
     private final Repository.Dao.Project projectDao = new Repository.Dao.Project();
@@ -39,12 +40,12 @@ public class Project {
     }
 
 
-    public Entitie.Project get(int id) {
+    public Optional<Entitie.Project> get(int id) {
         try {
-            return projectDao.get(id).orElse(null);
+            return Optional.of(projectDao.get(id).get());
         } catch (Exception e) {
             System.out.println(e);
-            return null;
+            return Optional.empty();
         }
     }
 
@@ -59,7 +60,7 @@ public class Project {
 
     public ArrayList<Entitie.Project> list() {
         ArrayList<Entitie.Project> projects = new ArrayList<>();
-        try (ResultSet data = projectDao.list()) {
+        try (ResultSet data = projectDao.list().get()) {
             while (data.next()) {
                 projects.add(Entitie.Project.mapResultSet(data));
             }
