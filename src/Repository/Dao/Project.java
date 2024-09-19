@@ -84,13 +84,13 @@ public class Project extends Dao {
         }
     }
 
-    public ResultSet list() {
+    public Optional<ResultSet> list() {
         String sql = "SELECT clients.name as client_name,* FROM projects join clients on clients.id = projects.client_id";
         try {
-            return Database.executeQuery(sql);
+            return Optional.of(Database.executeQuery(sql));
         } catch (SQLException e) {
             System.err.println("Error listing projects: " + e.getMessage());
-            return null;
+            return Optional.empty();
         }
     }
 

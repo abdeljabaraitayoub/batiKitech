@@ -75,7 +75,7 @@ public class Material extends Component {
                     0,
                     resultSet.getDouble("transportcost"),
                     resultSet.getDouble("qualitycoefficient"),
-                    new Repository.Project().get(resultSet.getInt("project_id"))
+                    new Repository.Project().get(resultSet.getInt("project_id")).orElse(null)
             );
         } catch (SQLException e) {
             e.printStackTrace();

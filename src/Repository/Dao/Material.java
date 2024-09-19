@@ -20,7 +20,7 @@ public class Material extends Dao {
     }
 
     public Optional<ResultSet> list() {
-        String sql = "SELECT * FROM materials where false";
+        String sql = "SELECT * FROM materials ";
         try {
             return Optional.of(Database.executeQuery(sql));
         } catch (Exception e) {
