@@ -5,6 +5,11 @@ import Enum.ProjectStatus;
 import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import Enum.ComponentType;
+import Repository.Component;
 
 public class Project {
 
@@ -14,7 +19,7 @@ public class Project {
     private double totalCost;
     private ProjectStatus status;
     private Client client;
-
+    private Map<ComponentType, List<?>> component;
 
     public Project(int id, String name, double profitMargin, double totalCost, ProjectStatus status, Client client) {
         this.id = id;
@@ -23,6 +28,7 @@ public class Project {
         this.totalCost = totalCost;
         this.status = status;
         this.client = client;
+        this.component = null;
     }
 
 
@@ -79,15 +85,13 @@ public class Project {
         this.client = client;
     }
 
-//
-//    public Quote getQuote() {
-//        return quote;
-//    }
-//
-//    public void setQuote(Quote quote) {
-//        this.quote = quote;
-//    }
+    public Map<ComponentType, List<?>> getComponent() {
+        return Component.ListByProject(id);
+    }
 
+    public void setComponent(Map<ComponentType, List<?>> component) {
+        this.component = component;
+    }
 
     public static Project mapResultSet(ResultSet data) {
         try {
@@ -97,7 +101,7 @@ public class Project {
                     data.getDouble("profitMargin"),
                     data.getDouble("totalCost"),
                     ProjectStatus.valueOf(data.getString("status")),
-                    new Repository.Client().get(data.getInt("client_id")));
+                    Repository.Client.get(data.getInt("client_id")));
         } catch (SQLException e) {
             System.err.println("Error mapping project: " + e.getMessage());
             return null;
@@ -106,14 +110,14 @@ public class Project {
 
     public String toString() {
         String border = "=".repeat(50);
+        Component.ListByProject(id);
         return border + "\n" +
                 "Project: " + name + "\n" +
                 "Status: " + status + "\n" +
-                "Profit Margin: " + (profitMargin * 100) + "%\n" +
+                "Profit Margin: " + profitMargin * 100 + "%\n" +
                 "Total Cost: " + totalCost + "€\n" +
                 "Client: " + (client != null ? client.getName() : "Not assigned") + "\n" +
-//                "Components: " + (components != null ? components.size() : 0) + "\n" +
-//                "Quote: " + (quote != null ? "Issued on " + quote.getIssueDate() : "Not created") + "\n" +
+                "components:" + Component.ListByProject(id) + "\n" +
                 border;
     }
 
