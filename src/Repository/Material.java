@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import Enum.ProjectStatus;
+
 public class Material {
     Repository.Dao.Material materialDao = new Repository.Dao.Material();
 
@@ -12,8 +14,8 @@ public class Material {
         Repository.Material material = new Repository.Material();
 //        System.out.println(material.list().get());
 //        System.out.println(material.get(5).get());
-        System.out.println(material.ListByProject(1).get());
-//        material.create(new Entitie.Material(1, "Material", 10, 100, 1, 1, 1, new Entitie.Project(1, "Project 1", 0.1, 1000, ProjectStatus.IN_PROGRESS, new Entitie.Client(1, "John Doe", "123456789", "123 Main St", true))));
+//        System.out.println(material.ListByProject(1).get());
+        material.create(new Entitie.Material(1, "Material", 10, 100, 1, 1, 1, new Entitie.Project(1, "Project 1", 0.1, 1000, ProjectStatus.IN_PROGRESS, new Entitie.Client(1, "John Doe", "123456789", "123 Main St", true))));
 //        material.delete(11);
     }
 

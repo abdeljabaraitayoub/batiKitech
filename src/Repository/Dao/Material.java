@@ -12,7 +12,7 @@ public class Material extends Dao {
 
     public static void main(String[] args) {
         Material material = new Material();
-//        System.out.println(material.list().get());
+        System.out.println(material.list().get());
 //        System.out.println(material.get(9));
 //        material.create(new Entitie.Material(1, "Material", 10, 100, 1, 1, 1, new Entitie.Project(1, "Project 1", 0.1, 1000, ProjectStatus.IN_PROGRESS, new Entitie.Client(1, "John Doe", "123456789", "123 Main St", true))));
 //        material.delete(12);

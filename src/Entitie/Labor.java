@@ -11,15 +11,13 @@ public class Labor extends Component {
     private double workerProductivity;
 
     public static void main(String[] args) {
-        Labor labor = new Labor(1, "Labor", 100, 1, 0.2, 10, 10, 0.5, new Repository.Project().get(1).get());
+        Labor labor = new Labor(1, "Labor", 0.2, 10, 10, 0.5, new Repository.Project().get(1).get());
         System.out.println(labor);
     }
 
-    public Labor(int id, String name, double unitCost, int quantity, Double vatRate, double hourlyRate, double hoursWorked, double workerProductivity, Project project) {
+    public Labor(int id, String name, Double vatRate, double hourlyRate, double hoursWorked, double workerProductivity, Project project) {
         this.id = id;
         this.name = name;
-        this.unitCost = unitCost;
-        this.quantity = quantity;
         this.type = ComponentType.LABOR;
         this.vatRate = vatRate;
         this.hourlyRate = hourlyRate;
@@ -70,8 +68,6 @@ public class Labor extends Component {
                     resultSet.getInt("quantity"),
                     0.00,
                     resultSet.getDouble("hourlyrate"),
-                    resultSet.getDouble("hoursworked"),
-                    resultSet.getDouble("workerproductivity"),
                     new Repository.Project().get(resultSet.getInt("project_id")).orElse(null));
         } catch (SQLException e) {
             e.printStackTrace();
@@ -85,8 +81,6 @@ public class Labor extends Component {
         return border + "\n" +
                 "Labor ID: " + id + "\n" +
                 "Name: " + name + "\n" +
-                "Unit Cost: " + unitCost + "\n" +
-                "Quantity: " + quantity + "\n" +
                 "VAT Rate: " + vatRate + "\n" +
                 "Hourly Rate: " + hourlyRate + "\n" +
                 "Hours Worked: " + hoursWorked + "\n" +
@@ -97,7 +91,7 @@ public class Labor extends Component {
 
 
     public double calculateTotalCost() {
-        return this.unitCost * this.quantity + this.hourlyRate * this.hoursWorked * this.workerProductivity;
+        return 0.00;
     }
 
 
