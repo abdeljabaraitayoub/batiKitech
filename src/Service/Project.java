@@ -2,8 +2,10 @@ package Service;
 
 import Repository.Client;
 import Enum.ProjectStatus;
+import Repository.Component;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Project {
@@ -11,54 +13,71 @@ public class Project {
 
     public static void main(String[] args) {
         Project project = new Project();
-        project.create();
+//        project.create();
     }
 
     public void list() {
         repository.list().get().forEach(System.out::println);
     }
 
-    public void create() {
-        Entitie.Client client = null;
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("1.search for client by name");
-        System.out.println("2.create a new client");
-        System.out.println("Choose an option:");
-        int option = scanner.nextInt();
-        switch (option) {
-            case 1:
-                System.out.println("Enter client name: ");
-                String name = scanner.next();
-                List<Entitie.Client> clients = Client.searchByName(name);
-                clients.forEach(System.out::println);
-                if (clients.isEmpty()) {
-                    System.out.println("No clients found");
-                    return;
-                } else {
-                    System.out.println("Enter client id: ");
-                    client = Client.get(scanner.nextInt());
-                }
-                break;
-            case 2:
-                System.out.println("Enter client name: ");
-                String name1 = scanner.next();
-                System.out.println("Enter client phone: ");
-                String phone = scanner.next();
-                System.out.println("Enter client address: ");
-                String address = scanner.next();
-                System.out.println("Is the client a professional? (y/n): ");
-                boolean isProfessional = scanner.next().equalsIgnoreCase("y");
-                client = new Entitie.Client(0, name1, phone, address, isProfessional);
-                Client.create(client);
-                client = Client.searchByPhone(phone).getFirst();
-                break;
-            default:
-                System.out.println("Invalid option");
-        }
+    public Entitie.Project create(Entitie.Project project) {
+        repository.create(project);
+        return last();
+    }
 
+    public void addComponent(Entitie.Project project) {
+        boolean addComponent = true;
+        while (addComponent) {
+            System.out.println("1.add material");
+            System.out.println("2.add Labor");
+            System.out.println("Choose an option: ");
+            Scanner scanner = new Scanner(System.in);
+            int option = scanner.nextInt();
+            switch (option) {
+                case 1:
+                    new Material().create(project);
+                    System.out.println("Do you want to add another component? (y/n): ");
+                    addComponent = scanner.next().equalsIgnoreCase("y");
+                    break;
+                case 2:
+                    new Labor().create(project);
+                    System.out.println("Do you want to add another component? (y/n): ");
+                    addComponent = scanner.next().equalsIgnoreCase("y");
+                    break;
+                default:
+                    System.out.println("Invalid option");
+            }
+        }
+    }
+
+    public Entitie.Project last() {
+        return repository.list().get().stream().max((t1, t2) -> t1.getId() - t2.getId()).orElse(null);
+    }
+
+
+    public void get() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter project id: ");
+        int id = scanner.nextInt();
+        System.out.println(repository.get(id).orElse(null));
+    }
+
+    public void update() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter project id: ");
+        int id = scanner.nextInt();
         System.out.println("Enter project name: ");
         String name = scanner.next();
-        Entitie.Project project = new Entitie.Project(0, name, 0, 0, ProjectStatus.IN_PROGRESS, client);
-        repository.create(project);
+        System.out.println("Enter project cost: ");
+        double cost = scanner.nextDouble();
+        System.out.println("Enter project price: ");
+        double price = scanner.nextDouble();
+        System.out.println("Enter project status: ");
+        ProjectStatus status = ProjectStatus.valueOf(scanner.next().toUpperCase());
+        System.out.println("Enter client id: ");
+        int clientId = scanner.nextInt();
+        Entitie.Client client = Client.get(clientId);
+        Entitie.Project project = new Entitie.Project(id, name, cost, price, status, client);
+        repository.update(id, project);
     }
 }
