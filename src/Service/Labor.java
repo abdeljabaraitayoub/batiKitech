@@ -17,16 +17,12 @@ public class Labor {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter labor name: ");
         String name = scanner.next();
-        System.out.println("Enter labor Unit cost: ");
-        double unitCost = scanner.nextDouble();
-        System.out.println("Enter labor quantity: ");
-        int quantity = scanner.nextInt();
         System.out.println("Enter labor hourly rate: ");
         double hourlyRate = scanner.nextDouble();
         System.out.println("Enter labor hours worked: ");
         double hoursWorked = scanner.nextDouble();
         System.out.println("Enter labor Productivity: ");
         double productivity = scanner.nextDouble();
-        new Repository.Labor().create(new Entitie.Labor(0, name, unitCost, quantity, 0.00, hourlyRate, hoursWorked, productivity, project));
+        new Repository.Labor().create(new Entitie.Labor(0, name, 0.00, hourlyRate, hoursWorked, productivity, project));
     }
 }

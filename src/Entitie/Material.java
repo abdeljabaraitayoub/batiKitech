@@ -6,6 +6,8 @@ import java.sql.SQLException;
 public class Material extends Component {
     private double transportCost;
     private double qualityCoefficient;
+    protected double unitCost;
+    protected int quantity;
 
     public Material(int id, String name, double unitCost, int quantity, double vatRate, double transportCost, double qualityCoefficient, Project project) {
         this.id = id;
@@ -41,6 +43,23 @@ public class Material extends Component {
 
     public void setProject(Project project) {
         this.project = project;
+    }
+
+    public double getUnitCost() {
+        return unitCost;
+    }
+
+    public void setUnitCost(double unitCost) {
+        this.unitCost = unitCost;
+    }
+
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
 

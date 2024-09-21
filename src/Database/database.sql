@@ -39,8 +39,6 @@ CREATE TABLE components
 (
     id         SERIAL PRIMARY KEY,
     name       varchar(30)   not null,
-    unitCost   float         not null,
-    quantity   int           not null,
     type       componentType not null,
     project_id int REFERENCES projects (id),
     isDeleted  boolean default false
@@ -49,7 +47,9 @@ CREATE TABLE components
 CREATE TABLE materials
 (
     transportCost      float null,
-    qualityCoefficient float not null
+    qualityCoefficient float not null,
+    unitCost           float not null,
+    quantity           int   not null
 ) inherits (components);
 
 CREATE TABLE labors
@@ -93,9 +93,9 @@ VALUES ('Granite Countertop', 300.00, 2, 'Material', 1, 150.00, 1.2),
        ('Bathroom Vanity', 400.00, 1, 'Material', 4, 50.00, 1.3);
 
 -- Insert fake labor
-INSERT INTO labors (name, unitCost, quantity, type, project_id, hourlyRate, hoursWorked, workerProductivity)
-VALUES ('Kitchen Installation', 25.00, 40, 'Labor', 1, 25.00, 40.00, 1.0),
-       ('Office Painting', 20.00, 60, 'Labor', 2, 20.00, 60.00, 1.1),
-       ('Electrical Work', 30.00, 80, 'Labor', 3, 30.00, 80.00, 1.2),
-       ('Plumbing', 28.00, 20, 'Labor', 4, 28.00, 20.00, 1.0),
-       ('General Contracting', 35.00, 100, 'Labor', 5, 35.00, 100.00, 1.1);
+INSERT INTO labors (name, type, project_id, hourlyRate, hoursWorked, workerProductivity)
+VALUES ('Kitchen Installation', 'Labor', 1, 25.00, 40.00, 1.0),
+       ('Office Painting', 'Labor', 2, 20.00, 60.00, 1.1),
+       ('Electrical Work', 'Labor', 3, 30.00, 80.00, 1.2),
+       ('Plumbing', 'Labor', 4, 28.00, 20.00, 1.0),
+       ('General Contracting', 'Labor', 5, 35.00, 100.00, 1.1);
