@@ -1,5 +1,6 @@
 package Service;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Client {
@@ -9,32 +10,26 @@ public class Client {
         Client client = new Client();
 //        client.list();
 //        client.filteronlyProfessional();
-        client.create();
+//        client.create();
 //        client.update();
 //        client.delete();
         client.searchByName("a");
     }
 
 
-    public void list() {
-        repository.list().forEach(System.out::println);
+    public List<Entitie.Client> list() {
+        return repository.list();
+    }
+
+    public Entitie.Client get(int id) {
+        return Repository.Client.get(id);
     }
 
     public void filteronlyProfessional() {
         repository.list().stream().filter(client -> client.getIsProfessional()).forEach(client -> System.out.println(client));
     }
 
-    public void create() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter client name: ");
-        String name = scanner.nextLine();
-        System.out.println("Enter client phone: ");
-        String phone = scanner.nextLine();
-        System.out.println("Enter client address: ");
-        String address = scanner.nextLine();
-        System.out.println("Is the client a professional? (y/n): ");
-        boolean isProfessional = scanner.next().equalsIgnoreCase("y");
-        Entitie.Client client = new Entitie.Client(0, name, phone, address, isProfessional);
+    public void create(Entitie.Client client) {
         Repository.Client.create(client);
     }
 
@@ -61,8 +56,18 @@ public class Client {
         repository.delete(id);
     }
 
-    public void searchByName(String name) {
-        Repository.Client.searchByName(name).forEach(System.out::println);
+    public List<Entitie.Client> searchByName(String name) {
+        List<Entitie.Client> clients = Repository.Client.searchByName(name);
+        if (clients.isEmpty()) {
+            System.out.println("No clients found");
+            return null;
+        } else {
+            return clients;
+        }
+    }
+
+    public Entitie.Client last() {
+        return Repository.Client.last();
     }
 
 

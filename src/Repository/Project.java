@@ -16,9 +16,9 @@ public class Project {
 //        Entitie.Project project1 = new Entitie.Project(1, "Project 1", 0.1, 1000, ProjectStatus.IN_PROGRESS, new Entitie.Client(1, "John Doe", "123456789", "123 Main St", true));
 //        project.create(project1);
 //        System.out.println(project.get(1));
-        System.out.println(project.get(2));
-        Entitie.Project project2 = project.get(2).orElse(null);
-        System.out.println(project2.getComponent());
+//        System.out.println(project.get(2));
+        Entitie.Project project2 = project.get(9).orElse(null);
+        System.out.println(project2.toString());
 //        project.update(1, new Entitie.Project(1, "Project 1", 0.1, 1000, ProjectStatus.IN_PROGRESS, new Entitie.Client(1, "John Doe", "123456789", "123 Main St", false)));
 //        System.out.println(project.get(99).orElse(null));
 //        project.delete(12);

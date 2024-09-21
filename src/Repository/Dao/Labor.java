@@ -10,7 +10,7 @@ import java.util.Optional;
 public class Labor extends Dao {
     public static void main(String[] args) {
         Repository.Dao.Labor labor = new Repository.Dao.Labor();
-        Entitie.Labor labor1 = new Entitie.Labor(1, "Labor", 10, 100, ComponentType.LABOR, 0.1, 10, 10, 1, new Entitie.Project(1, "Project 1", 0.1, 1000, ProjectStatus.IN_PROGRESS, new Entitie.Client(1, "John Doe", "123456789", "123 Main St", true)));
+        Entitie.Labor labor1 = new Entitie.Labor(1, "Labor", 10, 100, 0.1, 10, 10, 1, new Entitie.Project(1, "Project 1", 0.1, 1000, ProjectStatus.IN_PROGRESS, new Entitie.Client(1, "John Doe", "123456789", "123 Main St", true)));
 //        labor.create(labor1);
 //        System.out.println(labor.list().get());
 //        System.out.println(labor.get(1).get());
