@@ -1,0 +1,161 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.5 Chrome/126.0.6478.234 Electron/31.4.0 Safari/537.36" version="24.7.5">
+  <diagram name="Page-1" id="M-lVSYPgohxnvnwa9WL2">
+    <mxGraphModel dx="956" dy="561" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PnzeAUkAKQMdmgCFdvLM-7" value="" style="shape=actor;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;fontFamily=agave;labelBorderColor=none;labelBackgroundColor=none;fontColor=default;fontSize=9;verticalAlign=middle;horizontal=1;textShadow=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="260" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PnzeAUkAKQMdmgCFdvLM-35" value="Main&#xa;(entry point)" style="ellipse;align=center;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1,&quot;sourcePerimeterSpacing&quot;:0,&quot;targetPerimeterSpacing&quot;:0};treeFolding=1;treeMoving=1;fillColor=#ffe6cc;strokeColor=#d79b00;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;fontFamily=agave;labelBorderColor=none;labelBackgroundColor=none;fontColor=default;fontSize=9;spacing=0;verticalAlign=middle;horizontal=1;textShadow=0;" vertex="1" parent="1">
+          <mxGeometry x="140" y="260" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PnzeAUkAKQMdmgCFdvLM-49" value="" style="shape=datastore;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;fontSize=9;verticalAlign=middle;horizontal=1;fontColor=default;labelBackgroundColor=none;labelBorderColor=none;textShadow=0;" vertex="1" parent="1">
+          <mxGeometry x="740" y="250" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="PnzeAUkAKQMdmgCFdvLM-57" value="" style="endArrow=classic;rounded=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;fontFamily=agave;labelBorderColor=none;labelBackgroundColor=none;fontColor=default;fontSize=9;verticalAlign=middle;horizontal=1;textShadow=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="270" as="sourcePoint" />
+            <mxPoint x="120" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PnzeAUkAKQMdmgCFdvLM-61" value="" style="endArrow=classic;rounded=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;fontFamily=agave;labelBorderColor=none;labelBackgroundColor=none;fontColor=default;fontSize=9;verticalAlign=middle;horizontal=1;textShadow=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="120" y="290" as="sourcePoint" />
+            <mxPoint x="100" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PnzeAUkAKQMdmgCFdvLM-66" value="" style="endArrow=classic;rounded=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;fontFamily=agave;labelBorderColor=none;labelBackgroundColor=none;fontColor=default;fontSize=9;verticalAlign=middle;horizontal=1;textShadow=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="710" y="269.94" as="sourcePoint" />
+            <mxPoint x="730" y="269.94" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PnzeAUkAKQMdmgCFdvLM-68" value="" style="endArrow=classic;rounded=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;fontFamily=agave;labelBorderColor=none;labelBackgroundColor=none;fontColor=default;fontSize=9;verticalAlign=middle;horizontal=1;textShadow=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="730" y="289.94" as="sourcePoint" />
+            <mxPoint x="710" y="289.94" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="720" y="289.94" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PnzeAUkAKQMdmgCFdvLM-71" value="System" style="swimlane;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;fontFamily=agave;labelBorderColor=none;labelBackgroundColor=none;fontColor=default;fontSize=9;verticalAlign=middle;horizontal=1;textShadow=0;" vertex="1" parent="1">
+          <mxGeometry x="260" y="181" width="440" height="180" as="geometry" />
+        </mxCell>
+        <UserObject label="Dao" treeRoot="1" id="PnzeAUkAKQMdmgCFdvLM-48">
+          <mxCell style="align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;fontFamily=agave;labelBorderColor=none;labelBackgroundColor=none;fontColor=default;fontSize=9;verticalAlign=middle;horizontal=1;textShadow=0;" vertex="1" collapsed="1" parent="PnzeAUkAKQMdmgCFdvLM-71">
+            <mxGeometry x="375" y="87" width="50" height="30" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Service" treeRoot="1" id="PnzeAUkAKQMdmgCFdvLM-45">
+          <mxCell style="align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;fontFamily=agave;labelBorderColor=none;labelBackgroundColor=none;fontColor=default;fontSize=9;verticalAlign=middle;horizontal=1;textShadow=0;" vertex="1" parent="PnzeAUkAKQMdmgCFdvLM-71">
+            <mxGeometry x="105" y="87" width="50" height="30" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Entitie" treeRoot="1" id="PnzeAUkAKQMdmgCFdvLM-46">
+          <mxCell style="align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;fontFamily=agave;labelBorderColor=none;labelBackgroundColor=none;fontColor=default;fontSize=9;verticalAlign=middle;horizontal=1;textShadow=0;" vertex="1" parent="PnzeAUkAKQMdmgCFdvLM-71">
+            <mxGeometry x="195" y="87" width="50" height="30" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Repository" treeRoot="1" id="PnzeAUkAKQMdmgCFdvLM-47">
+          <mxCell style="align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;fontFamily=agave;labelBorderColor=none;labelBackgroundColor=none;fontColor=default;fontSize=9;verticalAlign=middle;horizontal=1;textShadow=0;" vertex="1" parent="PnzeAUkAKQMdmgCFdvLM-71">
+            <mxGeometry x="285" y="87" width="50" height="30" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Ui" treeRoot="1" id="PnzeAUkAKQMdmgCFdvLM-43">
+          <mxCell style="align=center;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;};movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;fontFamily=agave;labelBorderColor=none;labelBackgroundColor=none;fontColor=default;fontSize=9;verticalAlign=middle;horizontal=1;textShadow=0;" vertex="1" parent="PnzeAUkAKQMdmgCFdvLM-71">
+            <mxGeometry x="15" y="87" width="50" height="30" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="PnzeAUkAKQMdmgCFdvLM-83" value="" style="endArrow=classic;rounded=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;fontFamily=agave;labelBorderColor=none;labelBackgroundColor=none;fontColor=default;fontSize=9;verticalAlign=middle;horizontal=1;textShadow=0;" edge="1" parent="PnzeAUkAKQMdmgCFdvLM-71">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="95" y="111.94" as="sourcePoint" />
+            <mxPoint x="75" y="111.94" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="85" y="111.94" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PnzeAUkAKQMdmgCFdvLM-84" value="" style="endArrow=classic;rounded=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;fontFamily=agave;labelBorderColor=none;labelBackgroundColor=none;fontColor=default;fontSize=9;verticalAlign=middle;horizontal=1;textShadow=0;" edge="1" parent="PnzeAUkAKQMdmgCFdvLM-71">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="75" y="91.94" as="sourcePoint" />
+            <mxPoint x="95" y="91.94" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PnzeAUkAKQMdmgCFdvLM-85" value="" style="endArrow=classic;rounded=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;fontFamily=agave;labelBorderColor=none;labelBackgroundColor=none;fontColor=default;fontSize=9;verticalAlign=middle;horizontal=1;textShadow=0;" edge="1" parent="PnzeAUkAKQMdmgCFdvLM-71">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="185" y="112" as="sourcePoint" />
+            <mxPoint x="165" y="112" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="180" y="111.93" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PnzeAUkAKQMdmgCFdvLM-86" value="" style="endArrow=classic;rounded=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;fontFamily=agave;labelBorderColor=none;labelBackgroundColor=none;fontColor=default;fontSize=9;verticalAlign=middle;horizontal=1;textShadow=0;" edge="1" parent="PnzeAUkAKQMdmgCFdvLM-71">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="165" y="92" as="sourcePoint" />
+            <mxPoint x="185" y="92" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PnzeAUkAKQMdmgCFdvLM-87" value="" style="endArrow=classic;rounded=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;fontFamily=agave;labelBorderColor=none;labelBackgroundColor=none;fontColor=default;fontSize=9;verticalAlign=middle;horizontal=1;textShadow=0;" edge="1" parent="PnzeAUkAKQMdmgCFdvLM-71">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="275" y="111.94" as="sourcePoint" />
+            <mxPoint x="255" y="111.94" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="265" y="111.94" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PnzeAUkAKQMdmgCFdvLM-88" value="" style="endArrow=classic;rounded=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;fontFamily=agave;labelBorderColor=none;labelBackgroundColor=none;fontColor=default;fontSize=9;verticalAlign=middle;horizontal=1;textShadow=0;" edge="1" parent="PnzeAUkAKQMdmgCFdvLM-71">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="255" y="91.94" as="sourcePoint" />
+            <mxPoint x="275" y="91.94" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PnzeAUkAKQMdmgCFdvLM-89" value="" style="endArrow=classic;rounded=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;fontFamily=agave;labelBorderColor=none;labelBackgroundColor=none;fontColor=default;fontSize=9;verticalAlign=middle;horizontal=1;textShadow=0;" edge="1" parent="PnzeAUkAKQMdmgCFdvLM-71">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="365" y="111.94" as="sourcePoint" />
+            <mxPoint x="345" y="111.94" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="355" y="111.94" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PnzeAUkAKQMdmgCFdvLM-90" value="" style="endArrow=classic;rounded=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;fontFamily=agave;labelBorderColor=none;labelBackgroundColor=none;fontColor=default;fontSize=9;verticalAlign=middle;horizontal=1;textShadow=0;" edge="1" parent="PnzeAUkAKQMdmgCFdvLM-71">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="345" y="91.94" as="sourcePoint" />
+            <mxPoint x="365" y="91.94" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PnzeAUkAKQMdmgCFdvLM-81" value="" style="endArrow=classic;rounded=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;fontFamily=agave;labelBorderColor=none;labelBackgroundColor=none;fontColor=default;fontSize=9;verticalAlign=middle;horizontal=1;textShadow=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="730" y="289.93" as="sourcePoint" />
+            <mxPoint x="710" y="289.93" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="720" y="289.93" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PnzeAUkAKQMdmgCFdvLM-82" value="" style="endArrow=classic;rounded=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;fontFamily=agave;labelBorderColor=none;labelBackgroundColor=none;fontColor=default;fontSize=9;verticalAlign=middle;horizontal=1;textShadow=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="710" y="269.93" as="sourcePoint" />
+            <mxPoint x="730" y="269.93" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PnzeAUkAKQMdmgCFdvLM-97" value="" style="endArrow=classic;rounded=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;fontFamily=agave;labelBorderColor=none;labelBackgroundColor=none;fontColor=default;fontSize=9;verticalAlign=middle;horizontal=1;textShadow=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="230" y="269.89" as="sourcePoint" />
+            <mxPoint x="250" y="269.89" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PnzeAUkAKQMdmgCFdvLM-98" value="" style="endArrow=classic;rounded=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;fontFamily=agave;labelBorderColor=none;labelBackgroundColor=none;fontColor=default;fontSize=9;verticalAlign=middle;horizontal=1;textShadow=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="250" y="289.89" as="sourcePoint" />
+            <mxPoint x="230" y="289.89" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
