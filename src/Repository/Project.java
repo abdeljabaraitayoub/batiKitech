@@ -13,12 +13,12 @@ public class Project {
 
     public static void main(String[] args) {
         Repository.Project project = new Repository.Project();
-//        Entitie.Project project1 = new Entitie.Project(1, "Project 1", 0.1, 1000, ProjectStatus.IN_PROGRESS, new Entitie.Client(1, "John Doe", "123456789", "123 Main St", true));
-//        project.create(project1);
+        Entitie.Project project1 = new Entitie.Project(1, "Project 1", 0.4, 1000, ProjectStatus.IN_PROGRESS, new Entitie.Client(1, "John Doe", "123456789", "123 Main St", true));
+        project.create(project1);
 //        System.out.println(project.get(1));
 //        System.out.println(project.get(2));
-        Entitie.Project project2 = project.get(9).orElse(null);
-        System.out.println(project2.toString());
+//        Entitie.Project project2 = project.get(9).orElse(null);
+//        System.out.println(project2.toString());
 //        project.update(1, new Entitie.Project(1, "Project 1", 0.1, 1000, ProjectStatus.IN_PROGRESS, new Entitie.Client(1, "John Doe", "123456789", "123 Main St", false)));
 //        System.out.println(project.get(99).orElse(null));
 //        project.delete(12);
@@ -79,5 +79,16 @@ public class Project {
         }
         return Optional.of(projects);
     }
+
+
+    public List<Entitie.Project> filterByClient(int id) {
+        return new Project().list().get().stream().filter(project -> project.getClient().getId() == id).toList();
+    }
+
+    public List<Entitie.Project> filterByName(String name) {
+        return new Project().list().get().stream().filter(project -> project.getName().contains(name)).toList();
+    }
+//
+
 
 }

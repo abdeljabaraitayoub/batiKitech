@@ -5,7 +5,7 @@ import Enum.ComponentType;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Labor extends Component {
+public class Labor extends Component implements Components {
     private double hourlyRate;
     private double hoursWorked;
     private double workerProductivity;
@@ -19,11 +19,11 @@ public class Labor extends Component {
         this.id = id;
         this.name = name;
         this.type = ComponentType.LABOR;
-        this.vatRate = vatRate;
         this.hourlyRate = hourlyRate;
         this.hoursWorked = hoursWorked;
         this.workerProductivity = workerProductivity;
         this.project = project;
+        this.vatRate = 20.0 / 100;
 
     }
 
@@ -64,10 +64,10 @@ public class Labor extends Component {
         try {
             return new Labor(resultSet.getInt("id"),
                     resultSet.getString("name"),
-                    resultSet.getDouble("unitcost"),
-                    resultSet.getInt("quantity"),
-                    0.00,
+                    20.00 / 100,
                     resultSet.getDouble("hourlyrate"),
+                    resultSet.getDouble("hoursworked"),
+                    resultSet.getDouble("workerproductivity"),
                     new Repository.Project().get(resultSet.getInt("project_id")).orElse(null));
         } catch (SQLException e) {
             e.printStackTrace();
@@ -77,21 +77,27 @@ public class Labor extends Component {
 
 
     public String toString() {
-        String border = "=".repeat(50);
-        return border + "\n" +
+        return "\n" +
                 "Labor ID: " + id + "\n" +
                 "Name: " + name + "\n" +
                 "VAT Rate: " + vatRate + "\n" +
                 "Hourly Rate: " + hourlyRate + "\n" +
                 "Hours Worked: " + hoursWorked + "\n" +
                 "Worker Productivity: " + workerProductivity + "\n" +
-                "Project: " + (project != null && project.getName() != null ? project.getName() : "not assigned") + "\n" +
-                border;
+                "Project: " + (project != null && project.getName() != null ? project.getName() : "not assigned") + "\n";
     }
 
 
+    @Override
     public double calculateTotalCost() {
-        return 0.00;
+        double baseCost = this.hourlyRate * this.hoursWorked * this.workerProductivity;
+        return baseCost + calculateVatRate();
+    }
+
+    @Override
+    public double calculateVatRate() {
+        double baseCost = this.hourlyRate * this.hoursWorked * this.workerProductivity;
+        return baseCost * this.vatRate;
     }
 
 

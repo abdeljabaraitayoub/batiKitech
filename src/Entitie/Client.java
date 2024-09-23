@@ -66,6 +66,9 @@ public class Client {
 
 
     public static Client mapResultSet(ResultSet data) {
+        if (data == null) {
+            return null;
+        }
         try {
             int id = data.getInt("id");
             String name = data.getString("name");
@@ -82,14 +85,12 @@ public class Client {
 
 
     public String toString() {
-        String border = "=".repeat(50);
-        return border + "\n" +
+        return "\n" +
                 "Client ID: " + id + "\n" +
                 "Name: " + name + "\n" +
                 "address: " + address + "\n" +
                 "Phone: " + phone + "\n" +
-                "Type: " + (isProfessional ? "Professional" : "Individual") + "\n" +
-                border + "\n";
+                "Type: " + (isProfessional ? "Professional" : "Individual") + "\n";
     }
 
 

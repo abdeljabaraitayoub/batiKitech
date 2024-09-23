@@ -3,7 +3,7 @@ package Entitie;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Material extends Component {
+public class Material extends Component implements Components {
     private double transportCost;
     private double qualityCoefficient;
     protected double unitCost;
@@ -64,13 +64,18 @@ public class Material extends Component {
 
 
     public double calculateTotalCost() {
-        return this.unitCost * this.quantity + this.transportCost + this.qualityCoefficient;
+        double baseCost = this.unitCost * this.quantity * this.qualityCoefficient + this.transportCost;
+        return baseCost + calculateVatRate();
+    }
+
+    public double calculateVatRate() {
+        double baseCost = this.unitCost * this.quantity * this.qualityCoefficient + this.transportCost;
+        return baseCost * this.vatRate;
     }
 
 
     public String toString() {
-        String border = "=".repeat(50);
-        return border + "\n" +
+        return "\n" +
                 "Material ID: " + id + "\n" +
                 "Name: " + name + "\n" +
                 "Unit Cost: " + unitCost + "\n" +
@@ -78,8 +83,7 @@ public class Material extends Component {
                 "VAT Rate: " + vatRate + "\n" +
                 "Transport Cost: " + transportCost + "\n" +
                 "Quality Coefficient: " + qualityCoefficient + "\n" +
-                "project: " + project.getName() + "\n" +
-                border;
+                "project: " + (project != null ? project.getName() : "not assigned") + "\n";
     }
 
 

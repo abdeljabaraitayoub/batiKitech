@@ -19,7 +19,13 @@ public class Project {
     private double totalCost;
     private ProjectStatus status;
     private Client client;
-    private Map<ComponentType, List<?>> component;
+    private Map<ComponentType, List<Components>> component;
+
+
+    public static void main(String[] args) {
+        Repository.Project project = new Repository.Project();
+        System.out.println(project.get(1).get());
+    }
 
     public Project(int id, String name, double profitMargin, double totalCost, ProjectStatus status, Client client) {
         this.id = id;
@@ -89,8 +95,12 @@ public class Project {
         return Component.ListByProject(id);
     }
 
-    public void setComponent(Map<ComponentType, List<?>> component) {
+    public void setComponent(Map<ComponentType, List<Components>> component) {
         this.component = component;
+    }
+
+    public double estimateComponent() {
+        return this.getComponent().get(ComponentType.LABOR).stream().reduce(0.0, (t1, t2) -> t1 + ((Labor) t2).calculateTotalCost(), Double::sum) + this.getComponent().get(ComponentType.MATERIAL).stream().reduce(0.0, (t1, t2) -> t1 + ((Material) t2).calculateTotalCost(), Double::sum);
     }
 
     public static Project mapResultSet(ResultSet data) {
@@ -101,7 +111,7 @@ public class Project {
                     data.getDouble("profitMargin"),
                     data.getDouble("totalCost"),
                     ProjectStatus.valueOf(data.getString("status")),
-                    Repository.Client.get(data.getInt("client_id")));
+                    Repository.Client.get(data.getInt("client_id")).orElse(null));
         } catch (SQLException e) {
             System.err.println("Error mapping project: " + e.getMessage());
             return null;
@@ -109,16 +119,14 @@ public class Project {
     }
 
     public String toString() {
-        String border = "=".repeat(50);
         Component.ListByProject(id);
-        return border + "\n" +
+        return "\n" +
                 "Project: " + name + "\n" +
                 "Status: " + status + "\n" +
-                "Profit Margin: " + profitMargin * 100 + "%\n" +
+                "Profit Margin: " + profitMargin + "%\n" +
                 "Total Cost: " + totalCost + "€\n" +
                 "Client: " + (client != null ? client.getName() : "Not assigned") + "\n" +
-                "components:" + Component.ListByProject(id) + "\n" +
-                border;
+                "components:\n" + Component.ListByProject(id) + "\n";
     }
 
 

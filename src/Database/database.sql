@@ -20,7 +20,7 @@ CREATE Table projects
     profitMargin float,
     totalCost    float,
     status       projectStatus,
-    client_id    int REFERENCES clients (id),
+    client_id    int REFERENCES clients (id) on delete set null,
     isDeleted    boolean default false
 );
 
@@ -31,7 +31,7 @@ CREATE TABLE quotes
     EstimatedAmount float,
     validityDate    Date NULL,
     isAccepted      Boolean default false,
-    project_id      int REFERENCES projects (id),
+    project_id      int  REFERENCES projects (id) on delete set null,
     isDeleted       boolean default false
 );
 
@@ -40,7 +40,7 @@ CREATE TABLE components
     id         SERIAL PRIMARY KEY,
     name       varchar(30)   not null,
     type       componentType not null,
-    project_id int REFERENCES projects (id),
+    project_id int REFERENCES projects (id) on DELETE CASCADE,
     isDeleted  boolean default false
 );
 
@@ -60,7 +60,6 @@ CREATE TABLE labors
 ) inherits (components);
 
 
--- Insert fake clients
 INSERT INTO clients (name, address, phone, isProfessional)
 VALUES ('John Doe', '123 Main St, Anytown', '555-1234', false),
        ('Jane Smith', '456 Elm St, Othertown', '555-5678', true),
@@ -68,7 +67,6 @@ VALUES ('John Doe', '123 Main St, Anytown', '555-1234', false),
        ('Bob Johnson', '321 Pine Ave, Somewhereville', '555-3456', false),
        ('Sarah Williams', '654 Birch Ln, Anothercity', '555-7890', false);
 
--- Insert fake projects
 INSERT INTO projects (name, profitMargin, totalCost, status, client_id)
 VALUES ('Kitchen Renovation', 0.15, 10000.00, 'IN_PROGRESS', 1),
        ('Office Remodel', 0.20, 25000.00, 'COMPLETED', 2),
@@ -76,7 +74,6 @@ VALUES ('Kitchen Renovation', 0.15, 10000.00, 'IN_PROGRESS', 1),
        ('Bathroom Upgrade', 0.12, 8000.00, 'IN_PROGRESS', 4),
        ('Home Extension', 0.10, 30000.00, 'CANCELLED', 5);
 
--- Insert fake quotes
 INSERT INTO quotes (issueDate, EstimatedAmount, validityDate, isAccepted, project_id)
 VALUES ('2023-09-01', 90.6, '2023-10-01', true, 1),
        ('2023-08-15', 90.6, '2023-09-15', true, 2),
@@ -84,7 +81,6 @@ VALUES ('2023-09-01', 90.6, '2023-10-01', true, 1),
        ('2023-09-05', 90.6, '2023-10-05', true, 4),
        ('2023-08-20', 90.6, '2023-09-20', false, 5);
 
--- Insert fake materials
 INSERT INTO materials (name, unitCost, quantity, type, project_id, transportCost, qualityCoefficient)
 VALUES ('Granite Countertop', 300.00, 2, 'Material', 1, 150.00, 1.2),
        ('Kitchen Cabinets', 200.00, 5, 'Material', 1, 100.00, 1.0),
@@ -92,7 +88,6 @@ VALUES ('Granite Countertop', 300.00, 2, 'Material', 1, 150.00, 1.2),
        ('Floor Tiles', 15.00, 1000, 'Material', 3, 300.00, 1.0),
        ('Bathroom Vanity', 400.00, 1, 'Material', 4, 50.00, 1.3);
 
--- Insert fake labor
 INSERT INTO labors (name, type, project_id, hourlyRate, hoursWorked, workerProductivity)
 VALUES ('Kitchen Installation', 'Labor', 1, 25.00, 40.00, 1.0),
        ('Office Painting', 'Labor', 2, 20.00, 60.00, 1.1),

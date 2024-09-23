@@ -4,6 +4,7 @@ import Database.Database;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class Client extends Dao {
 
@@ -66,16 +67,16 @@ public class Client extends Dao {
         }
     }
 
-    public ResultSet get(int id) {
+    public Optional<ResultSet> get(int id) {
         try {
             ResultSet resultSet = Database.executeQuery("select * from clients where id = " + id);
             if (resultSet.next()) {
-                return resultSet;
+                return Optional.ofNullable(resultSet);
             }
         } catch (Exception e) {
             System.out.println(e);
         }
-        return null;
+        return Optional.empty();
     }
 
     public ResultSet list() {

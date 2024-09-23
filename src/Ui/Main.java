@@ -16,7 +16,8 @@ public abstract class Main {
             robot.keyRelease(KeyEvent.VK_COMMA);
             robot.keyRelease(KeyEvent.VK_SHIFT);
             robot.keyRelease(KeyEvent.VK_CONTROL);
-            Thread.sleep(100); // Small delay to ensure the clear command is processed
+            Thread.sleep(100);
+//            new ProcessBuilder("clear").inheritIO().start().waitFor();
         } catch (Exception e) {
             e.printStackTrace();
         }

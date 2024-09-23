@@ -1,6 +1,7 @@
 package Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Client {
@@ -21,38 +22,23 @@ public class Client {
         return repository.list();
     }
 
-    public Entitie.Client get(int id) {
-        return Repository.Client.get(id);
+    public Optional<Entitie.Client> get(int id) {
+        return Optional.ofNullable(Repository.Client.get(id)).orElse(null);
     }
 
-    public void filteronlyProfessional() {
-        repository.list().stream().filter(client -> client.getIsProfessional()).forEach(client -> System.out.println(client));
+    public List<Entitie.Client> filterByProfessional() {
+        return repository.list().stream().filter(client -> client.getIsProfessional()).toList();
     }
 
     public void create(Entitie.Client client) {
         Repository.Client.create(client);
     }
 
-    public void update() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter client id: ");
-        int id = scanner.nextInt();
-        System.out.println("Enter client name: ");
-        String name = scanner.next();
-        System.out.println("Enter client phone: ");
-        String phone = scanner.next();
-        System.out.println("Enter client address: ");
-        String address = scanner.next();
-        System.out.println("Is the client a professional? (y/n): ");
-        boolean isProfessional = scanner.next().equalsIgnoreCase("y");
-        Entitie.Client client = new Entitie.Client(id, name, phone, address, isProfessional);
-        repository.update(id, client);
+    public void update(Entitie.Client client) {
+        repository.update(client.getId(), client);
     }
 
-    public void delete() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter client id: ");
-        int id = scanner.nextInt();
+    public void delete(int id) {
         repository.delete(id);
     }
 

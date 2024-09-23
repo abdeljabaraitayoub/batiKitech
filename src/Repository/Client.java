@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Client {
     private static final Repository.Dao.Client clientDao = new Repository.Dao.Client();
@@ -40,8 +41,8 @@ public class Client {
     }
 
 
-    public static Entitie.Client get(int id) {
-        return Entitie.Client.mapResultSet(clientDao.get(id));
+    public static Optional<Entitie.Client> get(int id) {
+        return Optional.ofNullable(Entitie.Client.mapResultSet(clientDao.get(id).orElse(null)));
     }
 
     public List<Entitie.Client> list() {
@@ -61,9 +62,9 @@ public class Client {
         return new Client().list().stream().filter(client -> client.getName().contains(name)).toList();
     }
 
-    public static List<Entitie.Client> searchByPhone(String phone) {
-        return new Client().list().stream().filter(client -> client.getPhone().equals(phone)).toList();
-    }
+//    public static List<Entitie.Client> searchByPhone(String phone) {
+//        return new Client().list().stream().filter(client -> client.getPhone().equals(phone)).toList();
+//    }
 
     public static Entitie.Client last() {
         return new Client().list().get(new Client().list().size() - 1);

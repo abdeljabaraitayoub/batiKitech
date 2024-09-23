@@ -3,6 +3,10 @@ package Entitie;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
+
+import Enum.ComponentType;
+
 
 public class Quote {
     private int id;
@@ -13,9 +17,18 @@ public class Quote {
     private final Project project;
 
 
+    public static void main(String[] args) {
+        Quote quote = new Quote(1, 1000, new Date(), new Date(), false, new Repository.Project().get(1).get());
+    }
+
+
     public Quote(int id, double estimatedAmount, Date issueDate, Date validityDate, boolean isAccepted, Project project) {
         this.id = id;
-        this.estimatedAmount = estimatedAmount;
+        if (estimatedAmount == 0) {
+            this.estimatedAmount = estimateTotalCost(project);
+        } else {
+            this.estimatedAmount = estimatedAmount;
+        }
         this.issueDate = issueDate;
         this.validityDate = validityDate;
         this.isAccepted = isAccepted;
@@ -78,15 +91,14 @@ public class Quote {
     }
 
     public String toString() {
-        String border = "=".repeat(50);
-        return border + "\n" +
-                "project: " + (project.getName() != null ? project.getName() : "no project assigned") + "\n" +
+        return "\n" +
+                "project: " + (project != null ? project.getName() : "no project assigned") + "\n" +
                 "Quote ID: " + id + "\n" +
                 "Estimated Amount: " + estimatedAmount + "€\n" +
                 "Issue Date: " + issueDate + "\n" +
                 "Validity Date: " + validityDate + "\n" +
                 "Status: " + (isAccepted ? "Accepted" : "Pending") + "\n" +
-                border;
+                "is expired :" + (validityDate.before(new Date()) ? "Expired" : "Valid") + "\n";
     }
 
     public static Quote mapResultSet(ResultSet data) {
@@ -102,5 +114,14 @@ public class Quote {
             System.err.println("Error mapping quote: " + e.getMessage());
             return null;
         }
+    }
+
+
+    public static double estimateTotalCost(Project project) {
+        double components = project.estimateComponent();
+        double totalMargin = components * project.getProfitMargin();
+        double totalCost = components + totalMargin;
+        totalCost = project.getClient().getIsProfessional() ? totalCost * 0.9 : totalCost;
+        return totalCost;
     }
 }

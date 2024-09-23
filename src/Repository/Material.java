@@ -20,13 +20,13 @@ public class Material {
     }
 
 
-    public Optional<ArrayList<Entitie.Material>> list() {
+    public Optional<List<Entitie.Material>> list() {
         ArrayList<Entitie.Material> materials = new ArrayList<>();
         try (ResultSet data = materialDao.list().orElse(null)) {
             while (data.next()) {
                 materials.add(Entitie.Material.mapResultSet(data));
             }
-            return Optional.of(materials);
+            return Optional.of(materials.stream().filter(material -> material.getProject() != null).toList());
         } catch (Exception e) {
             System.out.println(e);
             return Optional.empty();

@@ -11,10 +11,10 @@ public class Quote {
 
     public static void main(String[] args) {
         Quote quote = new Quote();
-//        quote.create(new Entitie.Quote(1, 1000, new java.util.Date(), new java.util.Date(), false, new Repository.Project().get(199).get()));
+        quote.create(new Entitie.Quote(1, 0, new java.util.Date(), new java.util.Date(), false, new Repository.Project().get(1).get()));
 //        quote.list().get().forEach(System.out::println);
 //        System.out.println(quote.get(2).get());
-        System.out.println(quote.listByProject(1).get());
+//        System.out.println(quote.listByProject(1).get());
     }
 
 
